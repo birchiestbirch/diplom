@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ScheduleWindow</class>
+ <widget class="QMainWindow" name="ScheduleWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>796</width>
+    <height>559</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(120, 120, 120);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(120, 120, 120);
+</string>
+   </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>10</y>
+      <width>191</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 26px;
+background-color: rgb(50, 50, 50);
+color: white;
+padding: 8px 16px;
+border-radius: 6px;
+font-weight: 670;</string>
+    </property>
+    <property name="text">
+     <string>Расписание</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>59</x>
+      <y>70</y>
+      <width>681</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(50, 50, 50)</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QTimeEdit" name="timeEdit">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>10</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTimeEdit {
+    background-color: #3a3a3a;
+    border: 1px solid #1f1f1f;
+    border-radius: 6px;
+    padding: 6px;
+    color: white;
+    font-weight: 600;
+}</string>
+     </property>
+     <property name="time">
+      <time>
+       <hour>0</hour>
+       <minute>0</minute>
+       <second>0</second>
+      </time>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="actionEdit">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>641</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit {
+    background-color: #2f2f2f;
+    border: 1px solid #1f1f1f;
+    border-radius: 6px;
+    padding: 8px;
+    color: white;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4CAF50;
+}</string>
+     </property>
+     <property name="placeholderText">
+      <string>Введите действие...</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="addButton">
+     <property name="geometry">
+      <rect>
+       <x>550</x>
+       <y>10</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #4CAF50;
+color: white;
+font-size: 16px;
+padding: 8px 16px;
+border-radius: 6px;
+font-weight: 670;
+</string>
+     </property>
+     <property name="text">
+      <string>Добавить</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="weekdayCombo">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>171</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
+    background-color: #3a3a3a;
+    border: 1px solid #1f1f1f;
+    border-radius: 6px;
+    padding: 6px 10px;
+    color: white;
+    font-weight: 600;
+}
+
+</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>MON</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>TUE</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>WED</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>THU</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FRI</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>SAT</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>SUN</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>*</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="monthCombo">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>10</y>
+       <width>181</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
+    background-color: #3a3a3a;
+    border: 1px solid #1f1f1f;
+    border-radius: 6px;
+    padding: 6px 10px;
+    color: white;
+    font-weight: 600;
+}
+</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>JAN</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FEB</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>MAR</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>APR</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>MAY</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>JUN</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>JUL</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>AUG</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>SEN</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>OCT</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>NOV</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>DEC</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>*</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QSpinBox" name="daySpin">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>10</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QSpinBox {
+    background-color: #3a3a3a;
+    border: 1px solid #1f1f1f;
+    border-radius: 6px;
+    padding: 6px;
+    color: white;
+    font-weight: 600;
+}
+
+QSpinBox:hover {
+    background-color: #444444;
+}
+</string>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="backButton">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>490</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(50, 50, 50);
+color: white;
+font-size: 16px;
+padding: 8px 16px;
+border-radius: 6px;
+font-weight: 670;
+</string>
+    </property>
+    <property name="text">
+     <string>Назад</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="QTableWidget">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>160</y>
+      <width>681</width>
+      <height>321</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::FocusPolicy::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableWidget {
+    background-color: #1e1e1e;
+    color: white;
+    gridline-color: #444;
+}
+QHeaderView::section {
+    background-color: #2b2b2b;
+    color: white;
+    font-weight: bold;
+}
+</string>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+    </property>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+    </property>
+    <property name="showGrid">
+     <bool>false</bool>
+    </property>
+    <property name="columnCount">
+     <number>4</number>
+    </property>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>ID</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Дата</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Время</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Действие</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QPushButton" name="backButton_2">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>490</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(50, 50, 50);
+color: white;
+font-size: 16px;
+padding: 8px 16px;
+border-radius: 6px;
+font-weight: 670;
+</string>
+    </property>
+    <property name="text">
+     <string>Удалить</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="launchButton">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>490</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(50, 50, 50);
+color: white;
+font-size: 16px;
+padding: 8px 16px;
+border-radius: 6px;
+font-weight: 670;
+</string>
+    </property>
+    <property name="text">
+     <string>Запуск</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
