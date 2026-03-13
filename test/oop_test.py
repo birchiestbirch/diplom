@@ -22,7 +22,7 @@ class server():
     def __init__(self, api: PterodactylClient):
         self.api = api  # Сохраняем объект API для дальнейшей работы
         self.server = self.api.client.servers.list_servers()  # Получаем список всех доступных серверов
-        self.server_id = self.server[0]['attributes']['identifier']  # Берём ID первого сервера из списка
+        self.server_id = self.server[0]['attributes']['identifier']  # Берём ID сервера из списка серверов
 
     def start(self):
         """Отправляет сигнал на запуск сервера"""
@@ -60,7 +60,7 @@ class server():
             # Переводим байты в гигабайты
             round(self.server_util["resources"]["uptime"] / 1000, 2)  # Переводим миллисекунды в секунды
         ]
-        self.sec = self.server_data[-1]  # Сохраняем сырое значение аптайма
+        self.sec = self.server_data[-1]  # Сохраняем сырое значение времени работы сервера
 
         def convert(secund):
             """Вспомогательная функция для конвертации секунд в часы:минуты:секунды"""
