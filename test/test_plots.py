@@ -29,7 +29,7 @@ class MonitoringWindow(QMainWindow):
         self.graphWidget1.setLabel('bottom', 'Time')
         self.graphWidget1.showGrid(x=True, y=True)
         self.graphWidget1.setYRange(0, 100, padding=0)
-        self.graphWidget1.addLegend()  # Добавляем легенду
+        self.graphWidget1.addLegend()
 
         # Второй график - RAM
         self.graphWidget2 = pg.PlotWidget()
@@ -55,7 +55,7 @@ class MonitoringWindow(QMainWindow):
         self.cpu_percents = [0] * 100
         self.ram_percents = [0] * 100
 
-        # Инициализация кривых с подписями для легенды
+        # Инициализация кривых с подписями
         self.curve_cpu = self.graphWidget1.plot(
             self.time_points, self.cpu_percents,
             pen=pg.mkPen(color='r', width=2),
@@ -77,45 +77,43 @@ class MonitoringWindow(QMainWindow):
 
     def start_monitoring(self):
         """Запуск мониторинга"""
-        if not self.timer_running:
-            self.timer.start(1000)
-            self.timer_running = True
+        if not self.timer_running:  # Проверяем, не запущен ли уже таймер
+            self.timer.start(1000)  # Запускаем таймер с интервалом 1 секунда
+            self.timer_running = True  # Отмечаем, что таймер теперь работает
 
     def stop_monitoring(self):
         """Остановка мониторинга"""
-        if self.timer_running:
-            self.timer.stop()
-            self.timer_running = False
+        if self.timer_running:  # Проверяем, работает ли таймер
+            self.timer.stop()  # Останавливаем таймер
+            self.timer_running = False  # Отмечаем, что таймер больше не работает
 
     def closeEvent(self, event):
         """Обработка закрытия окна"""
-        self.stop_monitoring()
-        event.accept()
+        self.stop_monitoring()  # Останавливаем мониторинг перед закрытием
+        event.accept()  # Подтверждаем закрытие окна
 
     def update_plots(self):
-        try:
-            data = self.serv.get_data()
-            new_cpu = data[2]
-            new_ram = data[1]
+        data = self.serv.get_data()  # Получаем свежие данные с сервера
+        new_cpu = data[2]  # Забираем процент CPU
+        new_ram = data[1]  # Забираем процент RAM
 
-            # Обновляем данные
-            self.cpu_percents.pop(0)
-            self.cpu_percents.append(new_cpu)
-            self.ram_percents.pop(0)
-            self.ram_percents.append(new_ram)
+        # Обновляем данные
+        self.cpu_percents.pop(0)  # Удаляем самое старое значение CPU
+        self.cpu_percents.append(new_cpu)  # Добавляем новое значение CPU
+        self.ram_percents.pop(0)  # Удаляем самое старое значение RAM
+        self.ram_percents.append(new_ram)  # Добавляем новое значение RAM
 
-            # Обновляем графики
-            self.curve_cpu.setData(self.time_points, self.cpu_percents)
-            self.curve_ram.setData(self.time_points, self.ram_percents)
+        # Обновляем графики
+        self.curve_cpu.setData(self.time_points, self.cpu_percents)  # Рисуем обновлённый график CPU
+        self.curve_ram.setData(self.time_points, self.ram_percents)  # Рисуем обновлённый график RAM
 
-            # Обновляем легенду с текущими значениями
-            if hasattr(self.graphWidget1, 'legend') and self.graphWidget1.legend is not None:
-                if len(self.graphWidget1.legend.items) > 0:
-                    self.graphWidget1.legend.items[0][1].setText(f"Current: {new_cpu:.1f}%")
+        # Обновляем легенду с текущими значениями
+        if hasattr(self.graphWidget1, 'legend') and self.graphWidget1.legend is not None:
+            if len(self.graphWidget1.legend.items) > 0:  # Проверяем, есть ли элементы в легенде
+                self.graphWidget1.legend.items[0][1].setText(
+                    f"Current: {new_cpu:.1f}%")  # Обновляем текст с текущим CPU
 
-            if hasattr(self.graphWidget2, 'legend') and self.graphWidget2.legend is not None:
-                if len(self.graphWidget2.legend.items) > 0:
-                    self.graphWidget2.legend.items[0][1].setText(f"Current: {new_ram:.1f}%")
-
-        except Exception as e:
-            print(f"Ошибка при получении данных: {e}")
+        if hasattr(self.graphWidget2, 'legend') and self.graphWidget2.legend is not None:
+            if len(self.graphWidget2.legend.items) > 0:  # Проверяем, есть ли элементы в легенде
+                self.graphWidget2.legend.items[0][1].setText(
+                    f"Current: {new_ram:.1f}%")  # Обновляем текст с текущим RAM
